@@ -12,6 +12,11 @@
 <body> 
 
 <style type="text/css">
+
+.vowel {
+	color: red;	
+}
+
 body {
 	background-color: #FFF;
 	font-weight: bold;
@@ -59,6 +64,7 @@ a:active {
 	var randomNumber = 0;
 	var word = "";
 	var g3score = 0;
+	var vowelword = "";
 	
 	var pos = new Array ();
 	pos [0] = "verb";
@@ -698,6 +704,39 @@ else if (a == newWord[randomNumber] && g3counter ==4) {
 	
 </script>
 
+<script>
+
+function vowelless()
+	{
+
+	vowelword = Math.floor((Math.random() * newWord.length));
+	var w = newWord[vowelword];
+	w = w.replace(/a/g," _ ");
+	w = w.replace(/e/g," _ ");
+	w = w.replace(/i/g," _ ");
+	w = w.replace(/o/g," _ ");
+	w = w.replace(/u/g," _ ");
+	w = w.replace(/y/g," _ ");
+	document.getElementById("novowels").innerHTML = w;
+	
+	}
+	
+</script>
+
+<script>
+
+function vowelhelp()
+	{
+	
+	var a = newWord[vowelword];
+	document.getElementById("vowelled").innerHTML = a;
+	
+	$('#vowelled').each(function () {
+    $(this).html($(this).html().replace(/(a|e|i|o|u|y)/g, '<span class="vowel">$1</span>'));	
+});
+	
+	}
+</script>
 
 </head> 
 <body bgcolor="#FFFFFF" onload="please()"> 
@@ -2254,6 +2293,7 @@ else if (a == newWord[randomNumber] && g3counter ==4) {
     	<li><a href="#page27">Game 2</a></li>
         <li class="listdivider" data-role="divider" data-theme="d">One-Player Games</li>
        <li><a href="#page29">Scrambler</a></li>
+       <li><a href="#page31">Vowel Trouble</a></li>
    	</ul>
   </div>
   <div data-role="footer">
@@ -2543,3 +2583,87 @@ else if (a == newWord[randomNumber] && g3counter ==4) {
 </div>
 
   </div>
+  
+<div data-role="page" id="page31" data-theme="d">
+  <div data-role="header">
+    <h1>Vowel Trouble</h1>
+  </div>
+  <div data-role="content">
+    <p align="center">&nbsp;&nbsp;Rules:
+    </p>
+   	<p align="justify">&bull;&nbsp;&nbsp;Vowel Trouble is a one-player game.<br/><br/>
+      &bull;&nbsp;&nbsp;The vowels of each word are missing.<br/><br/>
+      &bull;&nbsp;&nbsp;You must spell the word correctly<br/><br/>
+      &bull;&nbsp;&nbsp;You receive 10 points if you spell the word correctly<br/>      <br/>
+      &bull;&nbsp;&nbsp; If you need help, touch the help button to see the word for 3 seconds<br/><br/>
+      &bull;&nbsp;&nbsp;<em>Remember:</em>&nbsp; You receive only 5 points if you receive help<br/><br/>
+    </p>
+  	<ul data-role="listview" data-theme="b">
+	  <li><a href="#page32" onClick="randomStart();">Start Game</a></li>
+   	</ul>
+  </div>
+  <div data-role="footer">
+    <h4><a href="#page2">Main Menu</a></h4>
+  </div>
+</div>
+
+<div id="page32" data-role="page" data-theme="a">
+<div data-role="header">
+    <h1>Vowel Trouble</h1>
+  </div>
+<div data-role="content">     
+    	<div>
+          <div align="center">
+            <table width="166" border="1" cellpadding="0">
+              <tr>
+                <th width="156" bgcolor="#FFFFFF" style="font-size: xx-large; color: #000;" scope="col">Score</th>
+              </tr>
+              <tr>
+                <th height="62" bgcolor="#FFFFFF" id="G4score" style="font-size: xx-large; color: #000;" scope="col"></th>
+              </tr>
+            </table>
+          </div>
+    	</div>
+    
+       
+    <div data-role="controlgroup" data-rel="horizontal">
+    	   <div align="center">
+    	     <button onClick="vowelless();" data-theme="b" data-inline=true>new word</button>
+    	     <table width="225" height="95" border="1" cellpadding="0" data-inline=true>
+    	       <tr>
+    	         <th width="225" bgcolor="#FFFFFF" id="novowels" style="font-size: xx-large; color: #000;" scope="col"></th>
+   	           </tr>
+    	       </table>
+  	       </div>
+    </div>
+    
+     <input id="game4input" data-type="search"></input>
+    
+       <div data-role="controlgroup" data-rel="horizontal">
+    	   <div align="center">
+    	     <button onClick="vowelhelp();" data-theme="b" data-inline=true>help</button>
+    	     <table width="225" height="95" border="1" cellpadding="0" data-inline=true>
+    	       <tr>
+    	         <th width="225" bgcolor="#FFFFFF" id="vowelled" style="font-size: xx-large; color: #000;" scope="col"></th>
+   	           </tr>
+    	       </table>
+  	       </div>
+    </div>
+    
+   
+      <div data-role="footer" data-theme="a">
+	<div class="ui-grid-b">
+    	<div class="ui-block-a">
+        	<div align="center"><a href="#page24" data-icon="back" data-iconpos="left" data-inline="true" data-role="button" data-theme="b" onClick="G3scoring()">Back</a>
+      	  </div>
+    	</div>
+        <div class="ui-block-b">
+        	<div align="center"><a href="#page" data-icon="home" data-iconpos="notext" data-role="button" data-theme="b" onClick="G3scoring()"></a>
+      	  </div>
+        </div>
+          <div class="ui-grid-c">
+      	  </div>
+        </div>
+	</div>
+  </div>
+</div>
